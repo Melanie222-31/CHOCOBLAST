@@ -22,6 +22,10 @@ class Roles extends BddConnect {
     public function setNomRoles($name):void{
         $this -> nom_roles = $name;
     }
+
+    public function addRoles():?string{
+        return $this -> nom_roles;
+    }
 }
 
 ?>
