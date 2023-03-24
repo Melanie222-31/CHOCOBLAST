@@ -53,13 +53,11 @@
                 }
             }
             // importer la vue
-            $msg='f';
             include './app/vue/viewAddUser.php';
-
         }
-
+        // Fonction pour se connecter au site :
         public function connexionUser() {
-            // variable pour stocker le message
+            // variable pour stocker le message d'erreur :
             $msg = "";
             $valide="";
             //logique
@@ -88,12 +86,12 @@
                             $_SESSION['id'] = $data[0]->id_utilisateur;
                             $valide ="connecté";
                         }
-                        // si le mp n'existe pas/est correcte :
+                        // si le mp n'existe pas/est correcte ou non  :
                         else {
                             $msg = "Les informations de connexion sont invalides";
                         }
                     }
-                    // test si le compte existe pas :
+                    // test si le compte existe ou pas :
                     else {
                         $msg="les informations de connexion sont invalides";
                     }
@@ -104,8 +102,13 @@
                 }
             }
             //import de la vue pour la connexion :
-            // $msg='f';
             include './app/vue/viewConnexion.php';
+        }
+        public function deconnexionUser(){
+            //détruire la session
+            session_destroy();
+            //rediriger vers la page d'accueil :
+            header('location: ./');
         }
     }
 ?>

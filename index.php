@@ -40,6 +40,9 @@
             break; 
         case '/CHOCOBLAST/connexion':
             $userController -> connexionUser();
+            break; 
+        case '/CHOCOBLAST/deconnexion':
+            $userController -> deconnexionUser();
         default:
             include './app/vue/error.php';
             break;

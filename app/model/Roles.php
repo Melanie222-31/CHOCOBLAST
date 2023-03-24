@@ -8,7 +8,7 @@ class Roles extends BddConnect {
     private $nom_roles;
 
     //constructeur :
-    public function __construc(){
+    public function __construct(){
     }
 
     // getters et setters :

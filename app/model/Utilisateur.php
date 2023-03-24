@@ -15,7 +15,7 @@ class Utilisateur extends BddConnect {
     private ?Roles $roles;
 
     //constructeur :
-    public function __construc(){
+    public function __construct(){
         // instancer un objet role qd on créé un utilisateur
         $this -> roles = new Roles ();
         // set de l'id_roles :
@@ -40,6 +40,9 @@ class Utilisateur extends BddConnect {
     }
    
     // (pour les set on ne mets pas l'ID car on ne le créé pas nous meme, on va aller le chercher dans la base de donner)
+    public function setIdUtilisateur(?int $id):void {
+        $this -> id_utilisateur= $id;
+    }
     public function setNomUtilisateur(?string $name):void {
         $this -> nom_utilisateur= $name;
     }
@@ -64,17 +67,17 @@ class Utilisateur extends BddConnect {
             $password = $this -> password_utilisateur;
             // récupération du role :
             $id = $this->roles->getIdRoles();
-        // prépaprer la requete
-        $req = $this -> connexion() -> prepare('INSERT INTO utilisateur(nom_utilisateur, prenom_utilisateur, mail_utilisateur, password_utilisateur, id_roles) VALUES(?,?,?,?,?)');
-        // blind les paramètres
-        $req -> bindParam (1, $nom, \PDO::PARAM_STR);
-        $req -> bindParam (2, $prenom, \PDO::PARAM_STR);
-        $req -> bindParam (3, $mail, \PDO::PARAM_STR);
-        $req -> bindParam (4, $password, \PDO::PARAM_STR);
-        //blind du role :
-        $req -> bindParam (5, $id, \PDO::PARAM_INT);
-        // Executer la requete
-        $req -> execute();
+            // prépaprer la requete
+            $req = $this -> connexion() -> prepare('INSERT INTO utilisateur(nom_utilisateur, prenom_utilisateur, mail_utilisateur, password_utilisateur, id_roles) VALUES(?,?,?,?,?)');
+            // blind les paramètres
+            $req -> bindParam (1, $nom, \PDO::PARAM_STR);
+            $req -> bindParam (2, $prenom, \PDO::PARAM_STR);
+            $req -> bindParam (3, $mail, \PDO::PARAM_STR);
+            $req -> bindParam (4, $password, \PDO::PARAM_STR);
+            //blind du role :
+            $req -> bindParam (5, $id, \PDO::PARAM_INT);
+            // Executer la requete
+            $req -> execute();
         }
         catch  (\Exception $e) {
             die ('Erreur : ' .$e -> getMessage());
@@ -101,6 +104,26 @@ class Utilisateur extends BddConnect {
             // afficher le message d'erreur
             die ('Erreur : ' .$e -> getMessage());
         }
+    }
+    // Méthode qui retourne tous les utilisateurs :
+    public function getUserAll():array{
+        try {
+            // préparer la requete :
+            $req = $this -> connexion() -> prepare ('SELECT id_utilisateur, nom_utilisateur, prenom_utilisateur, mail_utilisateur, image_utilisateur FROM utilisateur');
+            // Executer la requete :
+            $req -> execute ();
+            // récupérer la liste des utilisateurs :
+            $data = $req -> fetchAll(\PDO::FETCH_OBJ);
+            //retourner le tableau
+            return $data;
+        }
+        catch(\Exception $e){
+            die('Erreur : '.$e->getMessage());
+        }
+    }
+    //Méthode toString
+    public function __toString():string{
+        return $this->nom_utilisateur;
     }
 }
 
