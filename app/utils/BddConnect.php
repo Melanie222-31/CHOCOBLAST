@@ -4,7 +4,10 @@
     class BddConnect{
         //fonction connexion BDD
         public static function connexion(){
-            return new \PDO('mysql:host=localhost;dbname=chocoblast', 'root','', 
+            //import du fichier de configuration 
+            include './env.php';
+            //retour de l'objet PDO
+            return new \PDO("mysql:host=$host;dbname=$database", $login, $password, 
             array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
         }
     }

@@ -8,8 +8,7 @@ class Roles extends BddConnect {
     private $nom_roles;
 
     //constructeur :
-    public function __construc($name){
-        $this -> nom_roles = $name;
+    public function __construc(){
     }
 
     // getters et setters :
@@ -19,12 +18,47 @@ class Roles extends BddConnect {
     public function getNomRoles():?string{
         return $this -> nom_roles;
     }
+    public function setIdRoles($id):void{
+        $this->id_roles = $id;
+    }
     public function setNomRoles($name):void{
         $this -> nom_roles = $name;
     }
-
-    public function addRoles():?string{
-        return $this -> nom_roles;
+    // Methodes :
+    public function addRoles():void{
+        try {
+            // récupération des valeurs de l'objet :
+        $nom = $this -> nom_roles;
+        // préparer la requete :
+        $req = $this -> connexion () -> prepare ('INSERT INTO roles(nom_roles) VALUES(?)');
+        //binder la valeur de ce point d'interrogation = le parametre :
+        $req -> bindParam(1, $nom, \PDO::PARAM_STR); // l'antislash permet de faire référence pour d'utiliser PDO mais la class de PDO connecté
+        // Exécuter la requete :
+        $req -> execute();
+        }
+        // gestion des exeptions :
+        catch (\Exception $e) {
+            die ('Erreur ! :  '.$e -> getMessage());
+        }
+    }   
+    // methode pour récupérer un role par son nom
+    public function getRolesByName():array{
+        try{
+            //récupérer des valeurs de l'objet :
+            $nom = $this -> nom_roles;
+            // Préparer la requete :
+            $req = $this -> connexion() -> prepare ('SELECT id_roles, nom_roles, FROM roles WHERE nom_roles = ?');
+            $req->bindParam(1, $nom, \PDO::PARAM_STR);
+            //Exécution de la requête
+            $req -> execute ();
+            //récup d'un resultat ds tableau d'objet 
+            $data = $req -> fetchAll(\PDO::FETCH_OBJ);
+            //retour d'un tableau d'objet ou null :
+            return $data;
+        }
+        catch(\Exception $e){
+            die('Erreur : '.$e->getMessage());
+        }
     }
 }
 

@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./public/style/main.css">
+    <script src="./public/script/script.js" defer></script>
+    <title>Add Roles</title>
 </head>
 <body>
-    <form action="" method="post">
-        <input type="text" name="nom_roles">
-        <input type="submit" value="ajouter" name="submit">
-    </form>
+    <!--import du menu -->
+    <?php include './app/vue/viewMenu.php';?>
+    <div class="form">
+        <h3>Ajouter un role :</h3>
+        <form action="" method="post">
+            <label for="nom_roles">Saisir un role :</label>
+            <input type="text" name="nom_roles">
+            <input type="submit" value="Ajouter" name="submit">
+        </form>
+        <div id="error"><?php echo $msg ?></div>
+    </div>
 </body>
 </html>
