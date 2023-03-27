@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -6,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./public/style/main.css">
     <script src="./public/script/script.js" defer></script>
-    <title>Add Chocoblast</title>
+    <title>Update Chocoblast</title>
 </head>
 <body>
-    <!-- // import menu -->
-    <?php include './app/vue/viewMenu.php';?>
+    <!-- Import du menu -->
+    <?php include './app/vue/viewMenu.php'; ?>
     <section class="formContainer">
-        <h3>Ajouter un chocoblast :</h3>
+        <h3>Mettre à jour le chocoblast :</h3>
         <form action="" method="post">
             <label for="slogan_chocoblast">Saisir votre slogan :</label>
             <input type="text" name="slogan_chocoblast">
@@ -27,7 +26,7 @@
                     }
                 ?>
             </select>
-            <input type="submit" value="Ajouter" name="submit">
+            <input type="submit" value="Update" name="submit">
         </form>
     </section>
     <!-- Modal -->

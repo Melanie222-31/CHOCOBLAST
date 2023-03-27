@@ -11,14 +11,22 @@
 <body>
     <!--import du menu -->
     <?php include './app/vue/viewMenu.php';?>
-    <div class="form">
-        <h3>Ajouter un role :</h3>
-        <form action="" method="post">
-            <label for="nom_roles">Saisir un role :</label>
-            <input type="text" name="nom_roles">
-            <input type="submit" value="Ajouter" name="submit">
-        </form>
-        <div id="error"><?php echo $msg ?></div>
+    <section class="formContainer">
+    
+    <h3>Ajouter un role :</h3>
+    <form action="" method="post">
+        <label for="nom_roles">Saisir un role :</label>
+        <input type="text" name="nom_roles">
+        <input type="submit" value="Ajouter" name="submit">
+    </form>
+</section>
+<!-- Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p><?= $msg ?></p>
     </div>
+</div>
 </body>
 </html>

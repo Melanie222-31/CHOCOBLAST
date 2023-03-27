@@ -21,18 +21,33 @@ use app\utils\Fonctions;
                     //si le roles existe déjà :
                     if($this->getRolesByName()){
                         $msg = "Le role : ".$nom." existe déjà en BDD";
+                        echo '<script>
+                            setTimeout(()=>{
+                                modal.style.display = "block";
+                            }, 500);
+                        </script>';
                     }
                     // test s'il n existe pas :
                     else {
                         $this -> addRoles();
                         // afficher la confirmation :
                         $msg = "Le role :".$nom." a été ajouté en BDD";
+                        echo '<script>
+                            setTimeout(()=>{
+                                modal.style.display = "block";
+                            }, 500);
+                        </script>';
                     }                   
                 }
                 //sinon si les champs ne sont pas tous remplis :
                 else {
                     // afficher l'erreur :
                     $msg = "Veuillez remplir les champs du formulaire";
+                    echo '<script>
+                            setTimeout(()=>{
+                                modal.style.display = "block";
+                            }, 500);
+                        </script>';
                 }
             }
             // importer la vue

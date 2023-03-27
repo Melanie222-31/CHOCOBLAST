@@ -11,17 +11,23 @@
 <body>
     <!-- // import menu -->
     <?php include './app/vue/viewMenu.php';?>
-    <h3>Se connecter</h3>
-    <div class="form">
-        <form action="" method="post">
-            <label for="mail_utilisateur">Saisir votre mail :</label>
-            <input type="text" name="mail_utilisateur">
-            <label for="password_utilisateur">Saisir votre mot de passe :</label>
-            <input type="password" name="password_utilisateur">
-            <input type="submit" value="Connexion" name="submit">
-        </form>
-        <div id="error"><?php echo $msg; ?></div>
-        <div id="valide"><?php echo $valide; ?></div>
+    <section class="formContainer">
+        <h3>Se connecter</h3>
+            <form action="" method="post">
+                <label for="mail_utilisateur">Saisir votre mail :</label>
+                <input type="text" name="mail_utilisateur">
+                <label for="password_utilisateur">Saisir votre mot de passe :</label>
+                <input type="password" name="password_utilisateur">
+                <input type="submit" value="Connexion" name="submit">
+            </form>
+    </section>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p><?= $msg ?></p>
+        </div>
     </div>
 </body>
 </html>

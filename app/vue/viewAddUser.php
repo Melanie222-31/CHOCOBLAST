@@ -11,18 +11,31 @@
 <body>
     <!-- // import menu -->
     <?php include './app/vue/viewMenu.php';?>
-    <h3>Ajouter un compte utilisateur :</h3>
-    <form action="" method="post">
-        <label for="nom_utilisateur">Saisir votre nom :</label>
-        <input type="text" name="nom_utilisateur">
-        <label for="prenom_utilisateur">Saisir votre prénom :</label>
-        <input type="text" name="prenom_utilisateur">
-        <label for="mail_utilisateur">Saisir votre mail :</label>
-        <input type="text" name="mail_utilisateur">
-        <label for="password_utilisateur">Saisir votre mot de passe :</label>
-        <input type="password" name="password_utilisateur">
-        <input type="submit" value="Ajouter" name="submit">
-    </form>
-    <div id="error"><?php echo $msg; ?></div>
+    <section class="formContainer">
+        <h3>Ajouter un compte utilisateur :</h3>
+        <!-- Ajouter dans form la balise : 'enctype="multipart/form-data"' pour pouvoir afficher l'image, eviter fichier trop lourd mais tous les genre ok -->
+        <form action="" method="post" enctype="multipart/form-data">
+            <label for="nom_utilisateur">saisir votre nom :</label>
+            <input type="text" name="nom_utilisateur">
+            <label for="prenom_utilisateur">saisir votre prénom :</label>
+            <input type="text" name="prenom_utilisateur">
+            <label for="mail_utilisateur">saisir votre mail :</label>
+            <input type="email" name="mail_utilisateur">
+            <label for="password_utilisateur">saisir votre mot de passe :</label>
+            <input type="password" name="password_utilisateur">
+            <!-- Rajouter un imput pour ajouter la photo -->
+            <label for="image_utilisateur"></label>
+            <input type="file" name="image_utilisateur">
+            <input type="submit" value="Ajouter" name="submit">
+        </form>
+    </section>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p><?= $msg ?></p>
+        </div>
+    </div>
 </body>
 </html>

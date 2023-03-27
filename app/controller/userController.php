@@ -32,6 +32,11 @@
                     //tester si le compte existe déja
                     if($this->getUserByMail()){
                         $msg = "Les informations sont incorrectes";
+                        echo '<script>
+                            setTimeout(()=>{
+                                modal.style.display = "block";
+                            }, 500);
+                        </script>';
                     }
                     //test si le compte n'existe pas
                     else{
@@ -45,11 +50,21 @@
                         $this->addUser();
                         //affichage de l'erreur
                         $msg = "Le compte : ".$mail." a été ajouté en BDD";
+                        echo '<script>
+                            setTimeout(()=>{
+                                modal.style.display = "block";
+                            }, 500);
+                        </script>';
                     }
                 }
                 //sinon si les champs ne sont pas tous remplis :
                 else {
                     $msg = "Veuillez remplir tous les champs du formulaire";
+                    echo '<script>
+                            setTimeout(()=>{
+                                modal.style.display = "block";
+                            }, 500);
+                        </script>';
                 }
             }
             // importer la vue
@@ -59,7 +74,6 @@
         public function connexionUser() {
             // variable pour stocker le message d'erreur :
             $msg = "";
-            $valide="";
             //logique
             // test si le bouton est cliqué 
             if(isset($_POST['submit'])) {
@@ -84,21 +98,35 @@
                             $_SESSION['prenom'] = $data[0]->prenom_utilisateur;
                             $_SESSION['mail'] = $data[0]->mail_utilisateur;
                             $_SESSION['id'] = $data[0]->id_utilisateur;
-                            $valide ="connecté";
                         }
                         // si le mp n'existe pas/est correcte ou non  :
                         else {
                             $msg = "Les informations de connexion sont invalides";
+                            echo '<script>
+                                setTimeout(()=>{
+                                    modal.style.display = "block";
+                                }, 500);
+                            </script>';
                         }
                     }
                     // test si le compte existe ou pas :
                     else {
                         $msg="les informations de connexion sont invalides";
+                        echo '<script>
+                            setTimeout(()=>{
+                                modal.style.display = "block";
+                            }, 500);
+                        </script>';
                     }
                 }
                 // tester si les champs sont vides :
                 else {
                     $msg ="Veuillez remplir tous les champs de formulaire";
+                    echo '<script>
+                            setTimeout(()=>{
+                                modal.style.display = "block";
+                            }, 500);
+                        </script>';
                 }
             }
             //import de la vue pour la connexion :
